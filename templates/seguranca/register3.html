@@ -1,0 +1,64 @@
+<form>
+  <ion-view title="Cadastro" class="padding">
+    <ion-content style="margin-bottom:80px !important;">
+
+      <p class="text-center" style="margin:20px 50px 25px 50px;">Precisamos dessas fotos para<br /> verificar sua identidade</p>  
+
+        <div class="row">
+
+          <div class="col">
+            <div class="col-demo">
+              <button ng-click="getPhotoPerfil()"  class="button button-primary img_back_btn_cadastro" style="background: url('{{ bgPerfil }}');">
+                <div style="display:normal;" ng-hide="checkBgperfil">
+                  <p class="font-12" style="height:15px; margin-top:5px !important;"><strong>SUA FOTO</strong></p>
+                  <p class="font-12" style="margin:0px 0 5px 0 !important;">agora (Selfie)</p>
+                  <img src="img/icon-camera.png" style="width:50px; margin:0 0 -2px 0;">
+                </div>
+                <img src="img/check.png" ng-show="checkBgperfil" style="float:right; margin:90px -5px 0 0; width:15px;">
+              </button>
+              <br /><br />
+             <button class="button button-primary img_back_btn_cadastro" style="background: transparent;" disabled>
+              <p style="color:#000 !important; margin-top:  -15px !important;" class="font-12 text-center">
+                <br />Não se preocupe.<br />
+                <strong>Não mostraremos <br />suas fotos para <br />ninguém</strong>
+              </p>
+            </button>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="col-demo">
+              <button ng-click="getPhotoCNH()" class="button button-primary img_back_btn_cadastro" style="background: url('{{ bgCNH }}'); ">
+                <div style="display:normal;" ng-hide="checkBgCNH">
+                  <p class="font-12" style="height:15px; margin-top:5px !important;"><strong>FRENTE</strong></p>
+                  <p class="font-12" style="margin:0px 0 5px 0 !important;">RG, CNH ou RNE</p>
+                  <img src="img/icon-camera.png" style="width:50px; margin:0 0 -2px 0;">
+                </div>
+              <img src="img/check.png" ng-show="checkBgCNH" style="float:right; margin:90px -5px 0 0; width:15px;">
+              </button>            
+              <br /><br />
+              <button ng-click="getPhotoDocumento()" class="button button-primary img_back_btn_cadastro" style="background: url('{{ bgDocumento }}');">
+                <div style="display:normal;" ng-hide="checkBgDocumento">
+                  <p class="font-12" style="height:15px; margin-top:5px !important; "><strong>DOCUMENTO</strong></p>
+                  <p class="font-12"  style="margin:0px 0 5px 0 !important;">da motocicleta</p>
+                  <img src="img/icon-camera.png" style="width:50px; margin:0 0 -2px 0;">
+                </div>
+                <img src="img/check.png" ng-show="checkBgDocumento" style="float:right; margin:90px -5px 0 0; width:15px;">
+              </button>   
+
+            </div>
+          </div>
+
+        </div>  
+
+    </ion-content>
+  </ion-view>
+
+      <!-- <div class="bar bar-footer no-bgColor" style="height:75px;">
+        <button class="button button-default2 button-block" ng-click="sendToServer()" style="margin:0 10px 0 10px; height:55px;">ENVIAR  DOCUMENTOS</button>
+      </div> -->
+
+  <div class="bar bar-footer no-bgColor" style="height:75px;">
+    <input class="button button-default2 button-block" type="button" ng-click="sendToServer()" value="ENVIAR DOCUMENTOS" style="margin:5px 10px 0 10px; height:55px;">
+  </div>
+</form>

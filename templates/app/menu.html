@@ -1,0 +1,59 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content>
+
+    <ion-nav-bar class="bar-stable">
+<!--       <ion-nav-back-button>
+      </ion-nav-back-button> -->
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="app"></ion-nav-view>
+  </ion-side-menu-content>
+  
+  <ion-side-menu side="left" class="content-menu-principal">
+  <ion-side-menu side="left" >
+
+    <ion-header-bar class="bar-stable" style="border:none !important;">
+      <h1 class="title">MENU</h1>
+    </ion-header-bar>
+    <ion-content>
+
+      <ul class="list menu-principal">
+        <a ui-sref="app.perfil" class="item menu-photo-perfil" ng-click="toggleLeft()">
+            <img ng-src="{{ FotoProfissional }}" style="max-height:54px; max-width:54px; border-radius:25px;"
+            ng-show="FotoProfissional">
+
+            <img ng-src="img/profile.jpg" style="max-height:54px; max-width:54px; border-radius:25px;"
+             ng-show="!FotoProfissional">
+    
+          <p>{{ NomeProfissional }}<br />user: {{ CodigoUsuario }}</p>
+        </a>
+
+        <a ui-sref="app.dashboard" class="item" ng-click="toggleLeft()">
+          <i class="icon-menu ion-ios-home-outline"></i>DASHBOARD
+        </a>
+
+        <a ui-sref="app.funcionarios" class="item" ng-click="toggleLeft()">
+          <i class="icon-menu ion-ios-people-outline"></i>FUNCIONÁRIOS
+        </a>
+
+        <a ui-sref="app.vinculos" class="item" ng-click="toggleLeft()">
+          <i class="icon-menu ion-ios-monitor-outline"></i>VÍNCULOS
+        </a>
+
+        <a ui-sref="app.patrimonios" class="item" ng-click="toggleLeft()">
+          <i class="icon-menu ion-ios-monitor-outline"></i>PATRIMÔNIOS
+        </a>
+
+        <a class="item" ng-click="logoff()">
+          <i class="icon-menu ion-ios-close-empty"></i>LOGOFF
+        </a>
+
+      </ul> 
+
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

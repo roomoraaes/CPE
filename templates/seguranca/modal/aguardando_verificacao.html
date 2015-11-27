@@ -1,0 +1,64 @@
+<ion-modal-view class="modal">
+
+  <ion-header-bar class="bar bar-header bar-stable disable-user-behavior">
+    <h1 class="title">Status do Cadastro</h1>
+    <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModal(1)"></button>
+  </ion-header-bar>
+  <ion-content class="padding scroll-content ionic-scroll  has-header timeline_body">
+
+    <ul class="timeline">
+
+      <!-- Item 1 -->
+      <li>
+        <div class="direction-r">
+          <div class="flag-wrapper">
+            <span class="flag ">Envio dos Documentos</span><br /><br />
+              <span class="date">{{ dataCadastro }}</span>
+          </div>
+        </div>
+      </li>
+
+
+      <div ng-if="dataReenvio">
+        <li >
+          <div class="direction-r ">
+            <div class="flag-wrapper ">
+              <span class="flag">Reprovação dos documentos</span>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="direction-r">
+            <div class="flag-wrapper ">
+              <span class="flag">Reenvio dos Documentos</span><br /><br />
+              <span class="date">{{ dataReenvio }}</span>
+            </div>
+          </div>
+        </li>   
+      </div>   
+
+      
+      <!-- Item 2 -->
+      <li >
+        <div class="direction-r ">
+          <div class="flag-wrapper pulse ">
+            <span class="flag flag-red  ">Aprovação dos documentos</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- Item 3 -->
+      <li>
+        <div class="direction-r">
+          <div class="flag-wrapper recolher_animation pulse">
+            <span class="flag flag-red   ">Cadastro Aprovado</span>
+          </div>
+        </div>
+      </li>
+      
+    </ul>
+
+
+  </ion-content>
+</ion-modal-view>

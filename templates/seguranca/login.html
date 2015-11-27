@@ -1,0 +1,39 @@
+<form name="loginForm" novalidate>
+    <ion-view title="ENTRAR" class="padding back-login" >
+      <ion-content >
+      
+        <div class="list list-inset" style="margin-top:60px; background:transparent; padding:0 15px;">
+
+            <label style="background:transparent; border:none !important;" class="item item-input"
+            ng-class="{ 'has-error' : loginForm.cpf.$invalid && !loginForm.cpf.$pristine }">
+              
+              <input style="border-bottom:1px solid #dedede; color:#fff;" type="text" name="usuario" placeholder="LOGIN"
+              ng-model="loginData.usuario" Restrict="reject" required>
+
+            </label>
+            <p style="padding:0 15px;" ng-show="loginForm.usuario.$invalid && !loginForm.usuario.$pristine " class="help-block">Usuário inválido</p>
+
+            <br />
+
+
+            <label style="background:transparent; border:none !important;" class="item item-input"
+            ng-class="{ 'has-error':loginForm.Senha.$invalid && !loginForm.Senha.$pristine }">
+              
+              <input style="border-bottom:1px solid #dedede; color:#fff;" type="password" name="Senha" placeholder="SENHA"
+              ng-model="loginData.senha" required>
+            </label>
+
+            <p  style="padding:0 15px;"  ng-show="loginForm.Senha.$invalid && !loginForm.Senha.$pristine " class="help-block">Digite sua senha</p>
+
+        </div>
+
+
+      </ion-content>
+    </ion-view>
+
+    <div class="bar bar-footer no-bgColor footer-transparent">
+        <input class="button button-default button-block btn-footer-all" ng-disabled="loginForm.$invalid" value="ENTRAR" type="submit" ng-click="login(loginData)">
+    </div>
+
+</form>
+

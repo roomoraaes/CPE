@@ -1,0 +1,49 @@
+<form>
+  <ion-modal-view class="modal">
+    <ion-header-bar class="bar bar-header bar-neutra disable-user-behavior">
+      <h1 class="title">Endereço de partida</h1>
+      <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModal(1)"></button>
+    </ion-header-bar>
+    <ion-content class="scroll-content ionic-scroll  has-header modal_endereco_partida">
+
+        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+
+        <label class="item item-input">
+          <input type="text" placeholder="Endereço" value="Av. Marios Lopes Leão" style="border-right:1px solid #ccc;" ng-model="details.address">
+
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Número" style="border-right:1px solid #ccc;" ng-model="details.number">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Ex: Em frente ao portão branco">
+        </label>
+
+        <button class="button button-full button-yellow-taxi" style="margin-top: 0px;" ng-click="goToLocationAddress()">
+          OK</button>
+   
+        <div class="ao-redor">
+          Ao redor
+          <span style="color:#9f9f9f; float:right; font-size:20px; cursor:pointer; margin: 0 20px 0 0;" class="icon ion-social-foursquare" >
+        </div>
+
+
+        <ion-list>
+
+          <ul class="list">
+
+            <li class="item" style="padding:8px 0 8px 0 !important; height:35px !important; text-align:center;" ng-show="processing" >
+              <div class="spinner-loader" ></div>
+            </li>  
+
+            <li class="item" style="padding:8px 0 8px 15px !important;" ng-repeat="locais in placesAround" ng-click="goToLocation({{locais.location.lat}}, {{locais.location.lng}})">
+              {{ locais.name }}
+              <p style="color:#9b9a9a !important; font-size:12px;">{{ locais.location.address }}</p>
+            </li>          
+
+        </ul>
+
+       </ion-list>
+    </ion-content>
+  </ion-modal-view>
+</form>

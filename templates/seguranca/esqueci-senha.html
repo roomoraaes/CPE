@@ -1,0 +1,22 @@
+<form name="esqueciForm" ng-submit="resetPassword(esqueciSenha)" novalidate>
+  <ion-view title="Esqueceu sua senha?" class="padding back-login ">
+    <ion-content>
+
+      <div class="padding">
+        <p style="color:#fff !important; font-family:'Gotham-Light'; text-align:center; padding:20px 8px 0px 8px;">Insira seu email ou CPF e lhe enviaremos um link para re-definir sua senha.</p>
+      </div>
+
+      <div class="list list-inset">
+        <label class="item item-input" ng-class="{ 'has-error':esqueciForm.ID.$invalid && !esqueciForm.ID.$pristine }">
+          <input type="text" name="ID" placeholder="CPF ou E-mail" ng-model="dataUser.ID" autofocus="autofocus" required>
+        </label>
+        <p ng-show="esqueciForm.ID.$invalid && !esqueciForm.ID.$pristine " class="help-block">Digite seu CPF ou e-mail</p>
+      </div>
+
+    </ion-content>
+  </ion-view>
+
+  <div class="bar bar-footer no-bgColor footer-transparent">
+    <input class="button button-default button-block btn-footer-all" ng-disabled="esqueciForm.$invalid" type="submit" value="RECUPERAR SENHA">
+  </div>
+</form>

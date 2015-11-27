@@ -1,0 +1,38 @@
+<form>
+  <ion-view title="PATRIMÔNIOS" animation="slide-right-left-ios7">
+
+    <ion-nav-buttons side="right">
+    <button class="button button-stable" ui-sref="app.patrimoniosNovo">NOVO</button>
+    </ion-nav-buttons>  
+
+    <ion-content style="margin-bottom: -1px !important;">
+    <ion-refresher on-refresh="listarPatrimonios()"></ion-refresher>
+
+    <div class="item item-text-wrap center padding-loading" ng-show="processing" >
+      <i class="icon ion-ios7-reloading"></i>
+    </div>    
+
+    <label class="item item-input item-select" style="margin:10px !important;">
+      <div class="input-label">Status</div>
+      <select ng-model="statusPatrimonio" ng-change="listarPatrimonios(statusPatrimonio)">
+        <option value="5">Em estoque</option>
+        <option value="2">Em manutenção</option>
+        <option value="1">Entregue</option>
+        <option value="4">Excluído</option>
+        <option value="3">Roubado</option>
+      </select>
+    </label>      
+
+    <div class="list" ng-hide="processing">
+
+        <a class="item item-thumbnail-left" ng-repeat="(key, patrimonio) in patrimonios" ng-click="detalhesPatrimonio({{key}})">
+          <h2>Patrimônio: {{ patrimonio.DescricaoEquipamento }}</h2>
+          <p>Descrição: {{ patrimonio.NomeTipoPatrimonio }}</p>
+          <p class="status_patrimonio">Status: {{ patrimonio.NomeStatusPatrimonio }}</p>
+        </a>
+
+    </div>
+
+    </ion-content>
+  </ion-view>
+</form>

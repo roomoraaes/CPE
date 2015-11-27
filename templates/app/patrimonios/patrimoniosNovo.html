@@ -1,0 +1,76 @@
+<form name="patrimonioForm" novalidate>
+  <ion-view title="NOVO PATRIMÔNIO" animation="slide-right-left-ios7">
+
+  <ion-content>
+
+<!--   <div class="list card">
+
+    <div class="item item-avatar" ng-click="scanBarCode();">
+      <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-128.png">
+      <h2>Escanear</h2>
+      <p>Escanear o código de barras</p>
+    </div>
+  </div> -->
+
+  <div class="list list-inset">
+    <label class="item item-input">
+      <input type="text" placeholder="Nome *" ng-model="patrimonio.descricaoEquipamento" class="placeholder-dark">
+    </label>
+
+
+    <label class="item item-input item-select">
+      <div class="input-label">Tipo Patrimônio *</div>
+      <select name="tipo" data-ng-model="patrimonio.CodigoTipoPatrimonio" data-ng-options="i.CodigoTipoPatrimonio as i.NomeTipoPatrimonio for i in listaTipoPatrimonio" required>
+        <option value="">Selecione o Tipo de </option>
+      </select>
+    </label>
+    <p style="padding:0 15px;" ng-show="patrimonioForm.tipo.$invalid && !patrimonioForm.tipo.$pristine " class="help-block-white">Selecione o tipo de patrimônio</p>
+
+
+    <label class="item item-input">
+      <input type="number" name="codigo" placeholder="Código *" ng-model="patrimonio.codigoNumeroPatrimonio" class="placeholder-dark" required>
+    </label>
+    <p style="padding:0 15px;" ng-show="patrimonioForm.codigo.$invalid && !patrimonioForm.codigo.$pristine " class="help-block-white">Digite o código</p>  
+
+
+    <label class="item item-input">
+      <input type="number" nome="nota_fiscal" placeholder="Nota Fiscal *" ng-model="patrimonio.numeroNotaFiscal" class="placeholder-dark" required>
+    </label>
+    <p style="padding:0 15px;" ng-show="patrimonioForm.nota_fiscal.$invalid && !patrimonioForm.nota_fiscal.$pristine " class="help-block-white">Digite o número da  nota fiscal</p> 
+
+
+    <label class="item item-input">
+      <input type="text" name="numero_serie" placeholder="N de Série *" ng-model="patrimonio.codigoSerial" class="placeholder-dark" required>
+    </label>   
+    <p style="padding:0 15px;" ng-show="patrimonioForm.numero_serie.$invalid && !patrimonioForm.numero_serie.$pristine " class="help-block-white">Digite o número de série</p>      
+
+    <label class="item item-input item-select">
+      <div class="input-label">Fornecedor Patrimônio *</div>
+      <select name="fornecedor" data-ng-model="patrimonio.codigoFornecedorPatrimonio" data-ng-options="i.CodigoFornecedorPatrimonio as i.NomeFornecedorPatrimonio for i in listaFornecedoresPatrimonio" required>
+        <option value="">Selecione o Fornecedor</option>
+      </select>
+    </label>   
+    <p style="padding:0 15px;" ng-show="patrimonioForm.fornecedor.$invalid && !patrimonioForm.fornecedor.$pristine " class="help-block-white">Selecione o fornecedor</p> 
+
+
+    <label class="item item-input">
+      <input name="nome_entregador" type="text" placeholder="Entregue por *" ng-model="patrimonio.nomeEntregador" class="placeholder-dark" required>
+    </label>    
+    <p style="padding:0 15px;" ng-show="patrimonioForm.nome_entregador.$invalid && !patrimonioForm.nome_entregador.$pristine " class="help-block-white">Digite o nome do entregador</p>     
+
+    <label class="item item-input">
+      <textarea rows="5" type="text" placeholder="Observação" ng-model="patrimonio.descricaoJustificativa" class="placeholder-dark"></textarea>
+    </label>
+
+  </div>
+
+</ion-content>
+</ion-view>
+
+<div class="bar bar-footer no-bgColor" style="height:75px;">
+  <input class="button button-positive button-block btn-footer-all"
+  ng-disabled="patrimonioForm.$invalid" type="button" ng-click="sendToServer()" value="CADASTRAR PATRIMÔNIO">
+</div>
+
+
+</form>

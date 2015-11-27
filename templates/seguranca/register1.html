@@ -1,0 +1,50 @@
+<form name="userForm" ng-submit="save(user)" novalidate>
+  <ion-view title="Cadastro" class="padding">
+    <ion-content style="margin-bottom:80px !important;">
+
+      <div class="btn_facebook" ng-click="login();">Importar dados do Facebook</div>
+
+      <div class="list list-inset" style="margin-bottom:10px !important;">
+
+        <div class="item item-divider">Dados Pessoais</div>
+        <label class="item item-input input-transparent"  ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+          <input type="text" name="name" placeholder="Nome Completo" ng-model="user.Nome" required>
+        </label>
+        <p ng-show="userForm.name.$invalid && !userForm.name.$pristine " class="help-block">Seu nome é obrigatório</p>
+
+        <label class="item item-input input-transparent" ng-class="{'has-error': userForm.email.$invalid && !userForm.email.$pristine}">
+          <input type="email" name="email" placeholder="E-mail" ng-model="user.Email" required>
+        </label>  
+        <p ng-show="userForm.email.$invalid && !userForm.email.$pristine " class="help-block">Informe um e-mail válido</p>
+        
+        <label class="item item-input input-transparent" ng-class="{'has-error': userForm.dt_nascimento.$invalid && !userForm.dt_nascimento.$pristine}">
+          <span class="input-label">Data Nascimento</span>
+          <input name="dt_nascimento" type="date" placeholder="Data de Nascimento" ng-model="user.DataNascimento" required>
+        </label>
+        <p ng-show="userForm.dt_nascimento.$invalid && !userForm.dt_nascimento.$pristine " class="help-block">Data de nascimento obrigatória</p>
+        
+        <label class="item item-input input-transparent" ng-class="{'has-error':userForm.celular.$invalid && !userForm.celular.$pristine}">
+          <input type="tel" name="celular" placeholder="Celular" ng-model="user.Celular" mask="(99) 9?9999-9999" Restrict="reject">
+        </label>
+        <p ng-show="userForm.celular.$invalid && !userForm.celular.$pristine" class="help-block">Informe seu celular</p>
+
+        <label class="item item-input input-transparent" ng-class="{ 'has-error' : userForm.cpf.$invalid && !userForm.cpf.$pristine }">
+          <input type="tel" name="cpf" placeholder="CPF" ng-model="user.CPF" mask="999.999.999-99" Restrict="reject" required>
+        </label>
+        <p ng-show="userForm.cpf.$invalid && !userForm.cpf.$pristine " class="help-block">CPF inválido</p>
+        
+        <label class="item">
+          <input type="checkbox" name="termos" ng-model="user.termos" class="register-termos" />
+          <p>Aceitos os <a ng-click="modal.show();" class="yellow-link">Termos de uso</a></p>
+        </label> 
+
+      </div>
+
+    </ion-content>
+  </ion-view>
+
+  <div class="bar bar-footer no-bgColor" style="height:75px;">
+    <input class="button button-default2 button-block btn-footer-all" type="submit"
+    ng-disabled="(userForm.$invalid) || (user.termos == false)" value="PRÓXIMA ETAPA">
+  </div>
+</form>

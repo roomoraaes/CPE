@@ -1,0 +1,47 @@
+<form name="userForm" ng-submit="save(user)" >
+  <ion-view title="Cadastro" class="padding">
+    <ion-content style="margin-bottom:80px !important;">
+      <div class="list list-inset">
+
+        <div class="item item-divider">Dados da Moto</div>
+        <label class="item item-input input-transparent"  ng-class="{'has-error': userForm.modelo.$invalid && !userForm.modelo.$pristine}">
+          <input name="modelo" type="text" placeholder="Modelo" ng-model="user.ModeloMoto" required>
+        </label>
+        <p ng-show="userForm.modelo.$invalid && !userForm.modelo.$pristine " class="help-block">Informe o modelo</p>
+
+        <label class="item item-input input-transparent" ng-class="{'has-error': userForm.placa.$invalid && !userForm.placa.$pristine}">
+          <input type="text" name="placa" placeholder="Placa" ng-model="user.PlacaMoto" mask="@@@-9999" Restrict="reject" required>
+        </label>
+        <p ng-show="userForm.placa.$invalid && !userForm.placa.$pristine " class="help-block">Informe a placa</p>
+
+        <label class="item item-input input-transparent" ng-class="{'has-error': userForm.anoMoto.$invalid && !userForm.anoMoto.$pristine}">
+          <input type="tel" name="anoMoto" placeholder="Ano" ng-model="user.AnoMoto" mask="2999" Restrict="reject" required> 
+        </label> 
+        <p ng-show="userForm.anoMoto.$invalid && !userForm.anoMoto.$pristine" class="help-block">Informe o ano da moto</p>
+      </div>
+
+
+      <div class="list list-inset">
+         <div class="item item-divider">Segurança</div>
+        <label class="item item-input input-transparent" 
+        ng-class="{ 'has-error' : (userForm.Senha.$invalid && !userForm.Senha.$pristine) || (user.Senha != user.Senha2) }">
+          <input type="password" name="Senha" placeholder="Senha" ng-model="user.Senha" required>
+        </label>
+        <p ng-show="userForm.Senha.$invalid && !userForm.Senha.$pristine " class="help-block">Senha obrigatória</p>
+
+        <label class="item item-input input-transparent"
+        ng-class="{ 'has-error' : (userForm.Senha2.$invalid && !userForm.Senha2.$pristine) || (user.Senha != user.Senha2) }">
+          <input type="password" name="Senha2" placeholder="Confirme sua senha" ng-model="user.Senha2" required>
+        </label>
+        <p ng-show="userForm.Senha2.$invalid && !userForm.Senha2.$pristine" class="help-block">Senha obrigatória</p>
+        <p ng-show="user.Senha != user.Senha2" class="help-block">As senha digitas não são iguais</p>
+      </div>
+
+    </ion-content>
+  </ion-view>
+
+  <div class="bar bar-footer no-bgColor" style="height:75px;">
+    <input class="button button-default2 button-block btn-footer-all" type="submit" 
+    ng-disabled="(userForm.$invalid) || (user.Senha != user.Senha2)" value="PRÓXIMA ETAPA">
+  </div>
+</form>

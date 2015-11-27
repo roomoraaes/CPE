@@ -1,0 +1,75 @@
+<form>
+
+  <ion-modal-view class="modal">
+    <ion-header-bar class="bar bar-headerb bar-stable disable-user-behavior">
+      <h1 class="title">Detalhe Patrimônio</h1>
+      <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModal()"></button>
+    </ion-header-bar>
+    <ion-content class="scroll-content ionic-scroll  has-header ">
+
+    <ion-list>
+
+      <div class="row" style="margin:8px 0 0 0; height:75px;">
+        <div class="col col-100 text-center">
+            <img ng-src="img/logo.png" style="max-height:54px; max-width:54px; border-radius:25px;">         
+        </div>
+      </div>
+
+      <div class="row" style="margin:8px 0 0 0; height:75px;">
+        <div class="col col-5 text-center"></div> 
+
+        <div class="col col-90 text-center" style="height:55px; background:#f8f8f8; border: 1px solid #f7f7f7; padding:6px 8px 0 8px !important;">
+          <strong>Patrimônio</strong><br />Notebook Dell
+        </div>
+
+        <div class="col col-5 text-center"></div> 
+      </div>
+    </ion-list>
+
+
+  <div class="list">
+      <a class="item item-avatar item-detalhes-avatar" href="#">
+        <h2>Número Patrimônio</h2>
+        <p>{{ patrimonioSingle.NumeroPatrimonio }}</p>
+      </a>
+
+      <a class="item item-avatar item-detalhes-avatar" href="#">
+        <h2>Nota Fiscal</h2>
+        <p>{{ patrimonioSingle.NumeroNotaFiscal }}</p>
+      </a>
+
+      <a class="item item-avatar item-detalhes-avatar" href="#">
+        <h2>Fornecedor</h2>
+        <p>{{ patrimonioSingle.NomeFornecedorPatrimonio }}</p>
+      </a>      
+
+      <a class="item item-avatar item-detalhes-avatar" href="#">
+        <h2>Número de Série</h2>
+        <p>{{ patrimonioSingle.NumeroSerial }}</p>
+      </a>     
+
+      <a class="item item-avatar item-detalhes-avatar" href="#">
+        <h2>Entregue por</h2>
+        <p>{{ patrimonioSingle.NomeEntregador }}</p>
+      </a>     
+
+      <a class="item item-avatar item-detalhes-avatar" href="#">
+        <h2>Status</h2>
+        <p>{{ patrimonioSingle.NomeStatusPatrimonio }}</p>
+      </a>   
+
+      <a class="item item-avatar item-detalhes-avatar" href="#">
+        <h2>Status</h2>
+        <p>{{ patrimonioSingle.NomeStatusPatrimonio }}</p>
+      </a>   
+
+
+
+  </div> 
+
+
+
+
+    </ion-content>
+  </ion-modal-view>
+</form>
