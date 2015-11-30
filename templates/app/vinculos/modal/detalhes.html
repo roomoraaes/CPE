@@ -2,7 +2,7 @@
 
   <ion-modal-view class="modal">
     <ion-header-bar class="bar bar-headerb bar-stable disable-user-behavior">
-      <h1 class="title">Detalhe Patrimônio</h1>
+      <h1 class="title">Detalhe Vínculo</h1>
       <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModal()"></button>
     </ion-header-bar>
     <ion-content class="scroll-content ionic-scroll  has-header ">
@@ -19,57 +19,40 @@
         <div class="col col-5 text-center"></div> 
 
         <div class="col col-90 text-center" style="height:55px; background:#f8f8f8; border: 1px solid #f7f7f7; padding:6px 8px 0 8px !important;">
-          <strong>Patrimônio</strong><br />Notebook Dell
+          <strong>Patrimônio</strong><br />{{ patrimonioSingle.DescricaoEquipamento }}
         </div>
 
         <div class="col col-5 text-center"></div> 
       </div>
     </ion-list>
 
+    <div class="list">
+        <a class="item item-avatar item-detalhes-avatar" href="#">
+          <h2>Tipo Patrimônio</h2>
+          <p ng-if="patrimonioSingle.NomeTipoPatrimonio">{{ patrimonioSingle.NomeTipoPatrimonio }}</p>
+          <p ng-if="!patrimonioSingle.NomeTipoPatrimonio" >Não informado</p>
+        </a>
 
-  <div class="list">
-      <a class="item item-avatar item-detalhes-avatar" href="#">
-        <h2>Número Patrimônio</h2>
-        <p>{{ patrimonioSingle.NumeroPatrimonio }}</p>
-      </a>
+        <a class="item item-avatar item-detalhes-avatar" href="#">
+          <h2>Número Patrimônio</h2>
+          <p ng-if="patrimonioSingle.NumeroPatrimonio">{{ patrimonioSingle.NumeroPatrimonio }}</p>
+          <p ng-if="!patrimonioSingle.NumeroPatrimonio">Não informado</p>
+        </a>
 
-      <a class="item item-avatar item-detalhes-avatar" href="#">
-        <h2>Nota Fiscal</h2>
-        <p>{{ patrimonioSingle.NumeroNotaFiscal }}</p>
-      </a>
+        <a class="item item-avatar item-detalhes-avatar" href="#">
+          <h2>Número de Série</h2>
+          <p ng-if="patrimonioSingle.NumeroSerial">{{ patrimonioSingle.NumeroSerial }}</p>
+          <p ng-if="!patrimonioSingle.NumeroSerial">Não informado</p>
+        </a>  
+    </div> 
 
-      <a class="item item-avatar item-detalhes-avatar" href="#">
-        <h2>Fornecedor</h2>
-        <p>{{ patrimonioSingle.NomeFornecedorPatrimonio }}</p>
-      </a>      
-
-      <a class="item item-avatar item-detalhes-avatar" href="#">
-        <h2>Número de Série</h2>
-        <p>{{ patrimonioSingle.NumeroSerial }}</p>
-      </a>     
-
-      <a class="item item-avatar item-detalhes-avatar" href="#">
-        <h2>Entregue por</h2>
-        <p>{{ patrimonioSingle.NomeEntregador }}</p>
-      </a>     
-
-      <a class="item item-avatar item-detalhes-avatar" href="#">
-        <h2>Status</h2>
-        <p>{{ patrimonioSingle.NomeStatusPatrimonio }}</p>
-      </a>   
-
-      <a class="item item-avatar item-detalhes-avatar" href="#">
-        <h2>Status</h2>
-        <p>{{ patrimonioSingle.NomeStatusPatrimonio }}</p>
-      </a>   
-
-
-
-  </div> 
-
-
-
+    <div class="center" style="margin:0 0 30px 0;">
+      <input class="button button-positive center" type="button" 
+      ng-click="desvincular(patrimonioSingle.CodigoPatrimonioProfissional, patrimonioSingle.NumeroChamado, patrimonioSingle.NumeroMatriculaProfissional, patrimonioSingle.NumeroMatriculaResponsavelVinculo, patrimonioSingle.CodigoPatrimonio, patrimonioSingle.NomeProfissional)"
+      value="Desvincular Patrimônio">
+    </div>
 
     </ion-content>
   </ion-modal-view>
+
 </form>

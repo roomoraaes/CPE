@@ -26,9 +26,12 @@
 
     <div class="list" ng-hide="processing">
 
-        <a class="item item-thumbnail-left" ng-repeat="(key, patrimonio) in patrimonios" ng-click="detalhesPatrimonio({{key}})">
-          <h2>Número patrimônio: {{ patrimonio.NumeroPatrimonio }}</h2>
-          <p>Descrição: {{ patrimonio.NomeTipoPatrimonio }}</p>
+        <a class="item item-thumbnail-left" ng-repeat="(key, patrimonio) in patrimonios" ng-click="detalhesPatrimonio({{key}})"
+          ng-class="{ entregue: statusPatrimonio === '1'}">
+
+          <h2>Patrimônio: {{ patrimonio.NomeTipoPatrimonio }}</h2>
+          <p>Nº Patrimônio: {{ patrimonio.CodigoNumeroPatrimonio }}</p>
+          <p ng-show="statusPatrimonio == 1">Posse de: {{ patrimonio.NomeProfissional }}</p>
           <p class="status_patrimonio">Status: {{ patrimonio.NomeStatusPatrimonio }}</p>
         </a>
 

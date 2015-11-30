@@ -5,8 +5,6 @@ app.factory('vinculosService', function($ionicPopup,ngAuthSettings, $http, $q){
 	var factoryPopup = {};
     var serviceBase = ngAuthSettings.apiServiceBaseUri;	
 
-
-
     var _listaPatrimonios  = function(statusPatrimonio){
         var deferred = $q.defer();
         var data = "nomeProfissional=&numeroPatrimonio=&numeroChamado=&tipoPatrimonio=0&statusPatrimonio="+statusPatrimonio;
@@ -18,6 +16,36 @@ app.factory('vinculosService', function($ionicPopup,ngAuthSettings, $http, $q){
         });
         return deferred.promise;            
      };
+
+    var _desvincular  = function(codigoPatrimonioProfissional, numeroChamado, matriculaProfissional, matriculaResponsavelVinculo, codigoPatrimonio){
+        var deferred = $q.defer();
+        var today = new Date();
+        var dd = today.getDate(); 
+        var mm = today.getMonth()+1; 
+        var yyyy = today.getFullYear(); 
+        var hoje = dd+"/"+mm+"/"+yyyy;
+
+        var data = "codigoPatrimonioProfissional="+codigoPatrimonioProfissional+"&numeroChamado="+numeroChamado+"&matriculaProfissional="+matriculaProfissional+"&matriculaResponsavelVinculo="+matriculaResponsavelVinculo+"&codigoPatrimonio="+codigoPatrimonio+"&dataAtribuicao="+hoje+"&dataDevolucao="+hoje;
+     
+        $http.post(serviceBase + 'Patrimonio/DesvincularPatrimonioProfissional', data , { withCredentials : true, headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } }).success(function(response){
+            deferred.resolve(response);
+        }).error(function(err){
+            deferred.reject(err);
+        });
+        return deferred.promise;            
+     };
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,11 +117,14 @@ app.factory('vinculosService', function($ionicPopup,ngAuthSettings, $http, $q){
 	}
 	
 
+    factoryPopup.listaPatrimonios = _listaPatrimonios;
+    factoryPopup.desvincular = _desvincular;
+
+
 	factoryPopup.getTipoPatrimonio = _getTipoPatrimonio;
 	factoryPopup.getFornecedoresPatrimonio = _getFornecedoresPatrimonio;
 	factoryPopup.checkExistePatrimonio = _checkExistePatrimonio;
 	factoryPopup.salvaPatrimonio = _salvaPatrimonio;
-    factoryPopup.listaPatrimonios = _listaPatrimonios;
 	factoryPopup.acionaPopupSucesso = _acionaPopupSucesso;
 	factoryPopup.acionaPopupErro = _acionaPopupErro;
 

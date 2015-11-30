@@ -11,9 +11,13 @@ ion-view, .bar-footer{
 
 .item-thumbnail-left{
   padding-left: 20px !important;
-  height: 80px !important;
   min-height: 0px !important;
-  padding-top: 10px !important
+  padding-top: 10px !important;
+  height: 80px;
+}
+
+.entregue{
+  height: 105px !important;
 }
 
 .status_patrimonio{
