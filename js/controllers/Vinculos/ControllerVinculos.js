@@ -2,6 +2,17 @@
 
 app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionicPopup, vinculosService, popupService) {
 	$scope.processing = false;
+  $scope.vinculo = {};
+
+  $scope.getProfissionais = function(status){
+    vinculosService.getProfissionais().then(function (response) {
+     $scope.listaProfissionais = response;
+   },
+   function (err) {
+   });
+  };
+
+  $scope.getProfissionais();
 
 	$scope.listarPatrimonios = function(status){
 		$scope.processing = true;
@@ -15,6 +26,34 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
      $scope.$broadcast('scroll.refreshComplete');
    });
   };
+
+  $scope.vincular = function(numeroChamado, matriculaProfissional, codigoPatrimonio, numeroMatriculaProfissionalEntrega, observacaoDaEntrega){
+          vinculosService.vincular(numeroChamado, matriculaProfissional, codigoPatrimonio, numeroMatriculaProfissionalEntrega, observacaoDaEntrega).then(function (response) {
+           if(response == true){
+            var informacoes = {
+              title: 'Sucesso!',
+              body: 'Patrimônio Vinculado com Sucesso',
+              btbBody: 'Ok'
+            };
+            popupService.acionaPopupSucesso(informacoes); 
+            $scope.listarPatrimonios(5);
+
+           }else{
+            var informacoes = {
+              title: 'Erro!',
+              body: 'Ocorreu um erro ao Vincular o patrimônio',
+              btbBody: 'Tentar Novamente'
+            };
+            popupService.acionaPopupErro(informacoes)
+
+           }
+          },
+          function (err) {
+          });
+
+          $scope.closeModal();
+
+  }
 
   $scope.desvincular = function(codigoPatrimonioProfissional, numeroChamado, matriculaProfissional, matriculaResponsavelVinculo, codigoPatrimonio, NomeProfissional){
 
@@ -45,7 +84,6 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
               btbBody: 'Tentar Novamente'
             };
             popupService.acionaPopupErro(informacoes)
-
 
            }
           },

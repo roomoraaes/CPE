@@ -1,58 +1,99 @@
 <form>
 
   <ion-modal-view class="modal">
-    <ion-header-bar class="bar bar-headerb bar-stable disable-user-behavior">
-      <h1 class="title">Detalhe Vínculo</h1>
-      <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModal()"></button>
-    </ion-header-bar>
-    <ion-content class="scroll-content ionic-scroll  has-header ">
+  <ion-header-bar class="bar bar-headerb bar-stable disable-user-behavior">
+  <h1 class="title">Detalhe Vínculo</h1>
+  <button class="button button-icon button-clear ion-ios-close-empty" ng-click="closeModal()"></button>
+</ion-header-bar>
+<ion-content class="scroll-content ionic-scroll  has-header ">
 
-    <ion-list>
+<ion-list>
 
-      <div class="row" style="margin:8px 0 0 0; height:75px;">
-        <div class="col col-100 text-center">
-            <img ng-src="img/logo.png" style="max-height:54px; max-width:54px; border-radius:25px;">         
-        </div>
-      </div>
+<div class="row" style="margin:8px 0 0 0; height:75px;">
+  <div class="col col-100 text-center">
+    <img ng-src="img/logo.png" style="max-height:54px; max-width:54px; border-radius:25px;">         
+  </div>
+</div>
 
-      <div class="row" style="margin:8px 0 0 0; height:75px;">
-        <div class="col col-5 text-center"></div> 
+<div class="row" style="margin:8px 0 0 0; height:75px;">
+  <div class="col col-5 text-center"></div> 
 
-        <div class="col col-90 text-center" style="height:55px; background:#f8f8f8; border: 1px solid #f7f7f7; padding:6px 8px 0 8px !important;">
-          <strong>Patrimônio</strong><br />{{ patrimonioSingle.DescricaoEquipamento }}
-        </div>
+  <div class="col col-90 text-center" style="height:55px; background:#f8f8f8; border: 1px solid #f7f7f7; padding:6px 8px 0 8px !important;">
+    <strong>Patrimônio</strong><br />{{ patrimonioSingle.DescricaoEquipamento }}
+  </div>
 
-        <div class="col col-5 text-center"></div> 
-      </div>
-    </ion-list>
+  <div class="col col-5 text-center"></div> 
+</div>
+</ion-list>
 
-    <div class="list">
-        <a class="item item-avatar item-detalhes-avatar" href="#">
-          <h2>Tipo Patrimônio</h2>
-          <p ng-if="patrimonioSingle.NomeTipoPatrimonio">{{ patrimonioSingle.NomeTipoPatrimonio }}</p>
-          <p ng-if="!patrimonioSingle.NomeTipoPatrimonio" >Não informado</p>
-        </a>
+<div class="list">
+  <a class="item item-avatar item-detalhes-avatar" href="#">
+    <h2>Tipo Patrimônio</h2>
+    <p ng-if="patrimonioSingle.NomeTipoPatrimonio">{{ patrimonioSingle.NomeTipoPatrimonio }}</p>
+    <p ng-if="!patrimonioSingle.NomeTipoPatrimonio" >Não informado</p>
+  </a>
 
-        <a class="item item-avatar item-detalhes-avatar" href="#">
-          <h2>Número Patrimônio</h2>
-          <p ng-if="patrimonioSingle.NumeroPatrimonio">{{ patrimonioSingle.NumeroPatrimonio }}</p>
-          <p ng-if="!patrimonioSingle.NumeroPatrimonio">Não informado</p>
-        </a>
+  <a class="item item-avatar item-detalhes-avatar" href="#">
+    <h2>Número Patrimônio</h2>
+    <p ng-if="patrimonioSingle.NumeroPatrimonio">{{ patrimonioSingle.NumeroPatrimonio }}</p>
+    <p ng-if="!patrimonioSingle.NumeroPatrimonio">Não informado</p>
+  </a>
 
-        <a class="item item-avatar item-detalhes-avatar" href="#">
-          <h2>Número de Série</h2>
-          <p ng-if="patrimonioSingle.NumeroSerial">{{ patrimonioSingle.NumeroSerial }}</p>
-          <p ng-if="!patrimonioSingle.NumeroSerial">Não informado</p>
-        </a>  
-    </div> 
+  <a class="item item-avatar item-detalhes-avatar" href="#">
+    <h2>Número de Série</h2>
+    <p ng-if="patrimonioSingle.NumeroSerial">{{ patrimonioSingle.NumeroSerial }}</p>
+    <p ng-if="!patrimonioSingle.NumeroSerial">Não informado</p>
+  </a>  
+</div> 
 
-    <div class="center" style="margin:0 0 30px 0;">
-      <input class="button button-positive center" type="button" 
-      ng-click="desvincular(patrimonioSingle.CodigoPatrimonioProfissional, patrimonioSingle.NumeroChamado, patrimonioSingle.NumeroMatriculaProfissional, patrimonioSingle.NumeroMatriculaResponsavelVinculo, patrimonioSingle.CodigoPatrimonio, patrimonioSingle.NomeProfissional)"
-      value="Desvincular Patrimônio">
-    </div>
 
-    </ion-content>
-  </ion-modal-view>
+
+
+
+
+<div ng-show="patrimonioSingle.CodigoStatusPatrimonio == 5">
+  <br />
+
+  <h4 class="center">Vincular Patrimônio</h4>
+  <label class="item item-input item-select">
+    <div class="input-label">Profissional</div>
+    <select name="tipo" data-ng-model="vinculo.profissional" data-ng-options="i.MatriculaProfissional as i.NomeProfissional for i in listaProfissionais">
+      <option value="">Selecione o Profissional</option>
+    </select>
+  </label>
+
+  <label class="item item-input">
+    <input type="tel" name="codigo" placeholder="Número do Chamado" ng-model="vinculo.NumeroChamado" class="placeholder-dark" required>
+  </label>
+
+
+  <label class="item item-input item-select">
+    <div class="input-label">Entregador</div>
+    <select name="tipo" data-ng-model="vinculo.entregador" data-ng-options="i.MatriculaProfissional as i.NomeProfissional for i in listaProfissionais">
+      <option value="">Selecione o Entregador</option>
+    </select>
+  </label>
+  
+
+  <label class="item item-input">
+    <input type="text" name="codigo" placeholder="Observacao" ng-model="vinculo.Observacao" class="placeholder-dark" required>
+  </label>
+  <br />
+  <div class="center" style="margin:0 0 30px 0;" ng-show="patrimonioSingle.CodigoStatusPatrimonio == 5">
+    <input class="button button-positive center" type="button" 
+    ng-click="vincular(vinculo.NumeroChamado, vinculo.profissional, patrimonioSingle.CodigoPatrimonio, vinculo.entregador, vinculo.Observacao)"
+    value="Vincular Patrimônio">
+  </div>
+
+</div>
+
+<div class="center" style="margin:0 0 30px 0;" ng-show="patrimonioSingle.CodigoStatusPatrimonio == 1">
+  <input class="button button-positive center" type="button" 
+  ng-click="desvincular(patrimonioSingle.CodigoPatrimonioProfissional, patrimonioSingle.NumeroChamado, patrimonioSingle.NumeroMatriculaProfissional, patrimonioSingle.NumeroMatriculaResponsavelVinculo, patrimonioSingle.CodigoPatrimonio, patrimonioSingle.NomeProfissional)"
+  value="Desvincular Patrimônio">
+</div>
+
+</ion-content>
+</ion-modal-view>
 
 </form>

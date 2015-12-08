@@ -17,6 +17,18 @@ app.factory('vinculosService', function($ionicPopup,ngAuthSettings, $http, $q){
         return deferred.promise;            
      };
 
+    var _vincular  = function(numeroChamado, matriculaProfissional, codigoPatrimonio, numeroMatriculaProfissionalEntrega, observacaoDaEntrega){
+        var data = "numeroChamado="+numeroChamado+"&matriculaProfissional="+matriculaProfissional+"&codigoPatrimonio="+codigoPatrimonio+"&numeroMatriculaProfissionalEntrega="+numeroMatriculaProfissionalEntrega+"&observacaoDaEntrega="+observacaoDaEntrega;
+     
+        $http.post(serviceBase + 'Patrimonio/VincularPatrimonioProfissional', data , { withCredentials : true, headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } }).success(function(response){
+            deferred.resolve(response);
+        }).error(function(err){
+            deferred.reject(err);
+        });
+        return deferred.promise;            
+     };
+
+
     var _desvincular  = function(codigoPatrimonioProfissional, numeroChamado, matriculaProfissional, matriculaResponsavelVinculo, codigoPatrimonio){
         var deferred = $q.defer();
         var today = new Date();
@@ -35,7 +47,16 @@ app.factory('vinculosService', function($ionicPopup,ngAuthSettings, $http, $q){
         return deferred.promise;            
      };
 
+    var _getProfissionais  = function(){
+        var deferred = $q.defer();
 
+        $http.get(serviceBase + 'Patrimonio/ListarProfissionalAutoComplete?nome=', { withCredentials : true, headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } }).success(function(response){
+            deferred.resolve(response);
+        }).error(function(err){
+            deferred.reject(err);
+        });
+        return deferred.promise;            
+     };
 
 
 
@@ -118,8 +139,9 @@ app.factory('vinculosService', function($ionicPopup,ngAuthSettings, $http, $q){
 	
 
     factoryPopup.listaPatrimonios = _listaPatrimonios;
+    factoryPopup.vincular = _vincular;
     factoryPopup.desvincular = _desvincular;
-
+    factoryPopup.getProfissionais = _getProfissionais;
 
 	factoryPopup.getTipoPatrimonio = _getTipoPatrimonio;
 	factoryPopup.getFornecedoresPatrimonio = _getFornecedoresPatrimonio;
