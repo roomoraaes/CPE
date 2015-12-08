@@ -36,6 +36,7 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
               btbBody: 'Ok'
             };
             popupService.acionaPopupSucesso(informacoes); 
+            $scope.vinculo = {};
             $scope.listarPatrimonios(5);
 
            }else{

@@ -18,6 +18,7 @@ app.factory('vinculosService', function($ionicPopup,ngAuthSettings, $http, $q){
      };
 
     var _vincular  = function(numeroChamado, matriculaProfissional, codigoPatrimonio, numeroMatriculaProfissionalEntrega, observacaoDaEntrega){
+        var deferred = $q.defer();
         var data = "numeroChamado="+numeroChamado+"&matriculaProfissional="+matriculaProfissional+"&codigoPatrimonio="+codigoPatrimonio+"&numeroMatriculaProfissionalEntrega="+numeroMatriculaProfissionalEntrega+"&observacaoDaEntrega="+observacaoDaEntrega;
      
         $http.post(serviceBase + 'Patrimonio/VincularPatrimonioProfissional', data , { withCredentials : true, headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } }).success(function(response){
