@@ -39,6 +39,17 @@ app.factory('patrimonioService', function($ionicPopup,ngAuthSettings, $http, $q)
         return deferred.promise;            
      };
 
+    var _obterUltimoNumero  = function(){
+        var deferred = $q.defer();
+
+        $http.post(serviceBase + 'Patrimonio/ObterUltimoNumeroPatrimonio', { withCredentials : true, headers: { 'Content-Type': 'application/json; charset=utf-8' } }).success(function(response){
+            deferred.resolve(response);
+        }).error(function(err){
+            deferred.reject(err);
+        });
+        return deferred.promise;            
+     };     
+
 	var _salvaPatrimonio  = function(patrimonio){
         var deferred = $q.defer();
         var data = "codigoTipoPatrimonio=" + patrimonio.CodigoTipoPatrimonio + "&codigoSerial="+patrimonio.codigoSerial + "&codigoNumeroPatrimonio=" + patrimonio.codigoNumeroPatrimonio+ "&descricaoJustificativa" + patrimonio.descricaoJustificativa+ "&numeroNotaFiscal=" + patrimonio.numeroNotaFiscal+ "&codigoFornecedorPatrimonio=" + patrimonio.codigoFornecedorPatrimonio+ "&codigoSerial=" + patrimonio.codigoSerial+ "&nomeEntregador=" + patrimonio.nomeEntregador+ "&descricaoEquipamento=" + patrimonio.descricaoEquipamento+ "&descricaoJustificativa="+patrimonio.descricaoJustificativa;
@@ -89,6 +100,7 @@ app.factory('patrimonioService', function($ionicPopup,ngAuthSettings, $http, $q)
 	factoryPopup.checkExistePatrimonio = _checkExistePatrimonio;
 	factoryPopup.salvaPatrimonio = _salvaPatrimonio;
     factoryPopup.listaPatrimonios = _listaPatrimonios;
+    factoryPopup.obterUltimoNumero = _obterUltimoNumero;
 	factoryPopup.acionaPopupSucesso = _acionaPopupSucesso;
 	factoryPopup.acionaPopupErro = _acionaPopupErro;
 
