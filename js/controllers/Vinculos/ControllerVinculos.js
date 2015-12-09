@@ -1,6 +1,6 @@
 ﻿'use strict'
 
-app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionicPopup, vinculosService, popupService) {
+app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionicPopup, vinculosService, popupService, $ionicLoading) {
 	$scope.processing = false;
   $scope.vinculo = {};
 
@@ -28,6 +28,7 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
   };
 
   $scope.vincular = function(numeroChamado, matriculaProfissional, codigoPatrimonio, numeroMatriculaProfissionalEntrega, observacaoDaEntrega){
+          $scope.loadingShow('Vinculando...');
           vinculosService.vincular(numeroChamado, matriculaProfissional, codigoPatrimonio, numeroMatriculaProfissionalEntrega, observacaoDaEntrega).then(function (response) {
            if(response == true){
             var informacoes = {
@@ -36,17 +37,17 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
               btbBody: 'Ok'
             };
             popupService.acionaPopupSucesso(informacoes); 
+            $ionicLoading.hide();
             $scope.vinculo = {};
             $scope.listarPatrimonios(5);
-
            }else{
             var informacoes = {
               title: 'Erro!',
               body: 'Ocorreu um erro ao Vincular o patrimônio',
               btbBody: 'Tentar Novamente'
             };
-            popupService.acionaPopupErro(informacoes)
-
+            popupService.acionaPopupErro(informacoes);
+            $ionicLoading.hide();
            }
           },
           function (err) {
@@ -57,7 +58,7 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
   }
 
   $scope.desvincular = function(codigoPatrimonioProfissional, numeroChamado, matriculaProfissional, matriculaResponsavelVinculo, codigoPatrimonio, NomeProfissional){
-
+    
     var confirmPopup = $ionicPopup.confirm({
       title: 'Desvincular Patrimônio',
       template: 'Tem certeza que deseja desvincular o patrimônio de '+NomeProfissional+'?',
@@ -67,7 +68,7 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
         text: 'Sim',
         type: 'button-positive',
         onTap: function() { 
-        
+          $scope.loadingShow('Desvinculando...');
           vinculosService.desvincular(codigoPatrimonioProfissional, numeroChamado, matriculaProfissional, matriculaResponsavelVinculo, codigoPatrimonio).then(function (response) {
            if(response == true){
             var informacoes = {
@@ -75,6 +76,7 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
               body: 'Patrimônio desvinculado com sucesso',
               btbBody: 'Ok'
             };
+            $ionicLoading.hide();
             popupService.acionaPopupSucesso(informacoes); 
             $scope.listarPatrimonios(1);
 
@@ -84,8 +86,8 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
               body: 'Ocorreu um erro ao desvincular o patrimônio',
               btbBody: 'Tentar Novamente'
             };
-            popupService.acionaPopupErro(informacoes)
-
+            popupService.acionaPopupErro(informacoes);
+            $ionicLoading.hide();
            }
           },
           function (err) {
@@ -115,6 +117,17 @@ app.controller('ControllerVinculos', function($scope, $http, $ionicModal, $ionic
 
     $scope.closeModal = function() {
       $scope.Modal.hide();
-    };    
+    };  
 
+
+    $scope.loadingShow = function(mensagem) {
+    $ionicLoading.show({
+      template: '<i class="icon ion-ios7-reloading"></i>  '+ mensagem
+    });
+    };
+
+    // Encerra Loading
+    $scope.loadingHide = function(){
+    $ionicLoading.hide();
+    }; 
   })
