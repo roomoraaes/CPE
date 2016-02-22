@@ -3,6 +3,17 @@
 app.controller('ControllerPatrimoniosNovo', function($state, $rootScope, $scope, $http, popupService, $ionicSideMenuDelegate, $ionicLoading, patrimonioService) {
 
 	$scope.patrimonio = [];
+ 	
+
+	$scope.obterUltimoNumero = function(){
+		patrimonioService.obterUltimoNumero().then(function (response2) {
+			$scope.patrimonio.codigoNumeroPatrimonio = response2;
+		},
+		function (err2) {
+		});	
+	};
+
+ 	$scope.obterUltimoNumero();
 
 	$scope.scanBarCode = function(){
 		$scope.loadingShow('Carregando Código de Barra'); 

@@ -4,6 +4,10 @@
   font-family: "Gotham-Light" !important;
 }
 
+ion-content{
+  overflow: hidden !important;
+}
+
 ion-view, .bar-footer{
   background-color: #f8f8f8 !important;
   border: 0px;
