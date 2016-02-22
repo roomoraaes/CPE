@@ -1,3 +1,3 @@
-# Appnuka
+# CEP - Controle Empresarial de Patrimônios
 
-Repositório do aplicativo de gerenciamento de campeonatos de snooker
+Aplicativo híbrido desenvolvido para trabalho de conclusão de curso.
